@@ -1,0 +1,1 @@
+Minist veri seti kullanılarak el yazısı sayıların tahminlenmesi.
