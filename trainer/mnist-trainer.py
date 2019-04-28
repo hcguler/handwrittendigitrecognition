@@ -34,7 +34,7 @@ kernel_size = (3, 3)
 (X_train, Y_train), (X_test, Y_test) = mnist.load_data()
 
 # Save some training data to a file so we can show it in the Java app
-X_train[0:100].tofile("mnist.csv", sep=",")
+#X_train[0:100].tofile("mnist.csv", sep=",")
 
 # Since the model will be used in a Java app where there are no
 # grayscale pixels, we convert the training and test data to
