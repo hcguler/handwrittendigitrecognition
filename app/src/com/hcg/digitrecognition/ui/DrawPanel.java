@@ -50,6 +50,7 @@ public class DrawPanel extends JPanel {
       graphics.draw(new Line2D.Double(p1, p2));
     }
   }
+  //panel içeriğinden image oluşturulur.
   public BufferedImage createImage() {
     final int width = this.getWidth();
     final int height = this.getHeight();

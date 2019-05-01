@@ -58,26 +58,28 @@ public class MainPanel extends JPanel {
     calculateButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
+        //panele çizilen resim alınır.
         BufferedImage image = drawPanel.createImage();
+        //tam çizimi içine alan rectangle hesaplanır.
         final Rectangle bounds = ImageUtils.findBoundsOfBlackShape(image);
         final Dimension newDim = ImageUtils.getScaledMnistDigitDimensions(bounds);
 
-        // Get only the digit out from the rest of the image
+        //panel içindeki resim hiçbir parçası dışarda kalmayacak şekilde kesilir.
         final BufferedImage cropped = image.getSubimage(bounds.x,
             bounds.y,
             bounds.width,
             bounds.height);
 
-        // Scale the digit to 20x20 box as required by MNIST
+        // MNIST veri setine benzer bir şekilde tam kapsanan sayı bilgisi 20x20 piksel şekil verilir.
         final BufferedImage scaled = ImageUtils.scale(cropped, newDim.width, newDim.height);
 
-        // Put the 20x20 image to 28x28 background and center it by the
-        // center of mass.
+        // 20x20 yapılan resim arka plan yerleştirilerek 28x28 olarak güncellenir.
+        // sayı tam ortada olacak şekilde çerçeve eklenmiş olur.
         final BufferedImage mnistInputImage
             = ImageUtils.addImageToCenter(scaled,
             ImageUtils.MNIST_IMAGE_SIZE,
             ImageUtils.MNIST_IMAGE_SIZE);
-
+        //kullanılabilir durumda olan h5f yapay sinir ağlarından sonuçlar oluşturulur.
         resultText.setText(digitDetector.recognize(mnistInputImage));
       }
     });
