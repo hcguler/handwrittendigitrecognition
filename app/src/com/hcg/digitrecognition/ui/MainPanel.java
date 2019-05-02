@@ -63,7 +63,6 @@ public class MainPanel extends JPanel {
         //tam çizimi içine alan rectangle hesaplanır.
         final Rectangle bounds = ImageUtils.findBoundsOfBlackShape(image);
         final Dimension newDim = ImageUtils.getScaledMnistDigitDimensions(bounds);
-
         //panel içindeki resim hiçbir parçası dışarda kalmayacak şekilde kesilir.
         final BufferedImage cropped = image.getSubimage(bounds.x,
             bounds.y,

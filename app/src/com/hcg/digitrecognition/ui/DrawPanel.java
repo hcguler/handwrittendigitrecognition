@@ -40,14 +40,13 @@ public class DrawPanel extends JPanel {
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     final Graphics2D graphics = (Graphics2D) g;
-    final BasicStroke stroke = new BasicStroke(20);
+    final BasicStroke stroke = new BasicStroke(12);
     graphics.setStroke(stroke);
     graphics.setColor(Color.BLACK);
 
     for (int i = 0; i < pointsDrawn.size() - 1; i++) {
       final Point p1 = pointsDrawn.get(i);
-      final Point p2 = pointsDrawn.get(i+1);
-      graphics.draw(new Line2D.Double(p1, p2));
+      graphics.draw(new Line2D.Double(p1, p1));
     }
   }
   //panel içeriğinden image oluşturulur.

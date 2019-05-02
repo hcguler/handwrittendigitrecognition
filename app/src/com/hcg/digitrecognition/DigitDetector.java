@@ -60,14 +60,12 @@ public class DigitDetector {
     final INDArray output_dlturkiye = mnistModel_dlturkiye.output(drawnDigit);
 //    final INDArray output_hcg = hcg.output(drawnDigit);
 
-    StringBuilder stringBuilder = new StringBuilder("First recognize: ")
+    StringBuilder stringBuilder = new StringBuilder("Yassine Ghouzam: ")
         .append(findLargestIndex(output))
         .append("\n")
         .append("DL Türkiye recognize: ")
-        .append(findLargestIndex(output_dlturkiye));
-        /*.append("\n")
-        .append("HCG recognize: ")
-        .append(findLargestIndex(output_hcg));*/
+        .append(findLargestIndex(output_dlturkiye))
+        .append("\n");
     return stringBuilder.toString();
   }
   //ağırlık değeri en yüksek indis tahmin edilen sayıyı vermektedir.
