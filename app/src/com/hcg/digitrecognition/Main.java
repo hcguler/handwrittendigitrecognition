@@ -1,6 +1,7 @@
 package com.hcg.digitrecognition;
 
 
+import com.hcg.digitrecognition.constants.UiConstants;
 import com.hcg.digitrecognition.ui.MainPanel;
 import java.awt.*;
 import java.io.IOException;
@@ -9,7 +10,6 @@ import org.deeplearning4j.nn.modelimport.keras.exceptions.InvalidKerasConfigurat
 import org.deeplearning4j.nn.modelimport.keras.exceptions.UnsupportedKerasConfigurationException;
 
 public class Main {
-  public static final int UI_SIZE = 500;
 
   public static void main(String[] args) {
     EventQueue.invokeLater(() -> {
@@ -28,11 +28,10 @@ public class Main {
   private static JFrame createFrame() throws InvalidKerasConfigurationException,
       IOException,
       UnsupportedKerasConfigurationException {
-    final JFrame frame = new JFrame("Draw a number");
-    frame.setSize(UI_SIZE, UI_SIZE);
+    final JFrame frame = new JFrame(UiConstants.MAIN_PANEL_HEADER);
+    frame.setSize(UiConstants.MAIN_PANEL_WIDTH, UiConstants.MAIN_PANEL_HEIGHT);
     frame.setResizable(false);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
     final MainPanel mainUi = new MainPanel();
     frame.add(mainUi);
 

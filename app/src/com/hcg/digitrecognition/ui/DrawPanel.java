@@ -1,5 +1,6 @@
 package com.hcg.digitrecognition.ui;
 
+import com.hcg.digitrecognition.constants.UiConstants;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -40,7 +41,7 @@ public class DrawPanel extends JPanel {
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     final Graphics2D graphics = (Graphics2D) g;
-    final BasicStroke stroke = new BasicStroke(12);
+    final BasicStroke stroke = new BasicStroke(UiConstants.DRAWING_STROKE_SIZE);
     graphics.setStroke(stroke);
     graphics.setColor(Color.BLACK);
 

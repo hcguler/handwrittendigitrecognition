@@ -1,5 +1,6 @@
 package com.hcg.digitrecognition;
 
+import com.hcg.digitrecognition.constants.UiConstants;
 import com.hcg.digitrecognition.ui.ImageUtils;
 import java.awt.*;
 import org.deeplearning4j.nn.modelimport.keras.KerasModelImport;
@@ -60,12 +61,11 @@ public class DigitDetector {
     final INDArray output_dlturkiye = mnistModel_dlturkiye.output(drawnDigit);
 //    final INDArray output_hcg = hcg.output(drawnDigit);
 
-    StringBuilder stringBuilder = new StringBuilder("Yassine Ghouzam: ")
+    StringBuilder stringBuilder = new StringBuilder(UiConstants.YG_CNN_OWNER_TEXT)
         .append(findLargestIndex(output))
-        .append("\n")
-        .append("DL Türkiye recognize: ")
-        .append(findLargestIndex(output_dlturkiye))
-        .append("\n");
+        .append(UiConstants.HTML_BR)
+        .append(UiConstants.DLTURKIYE_CNN_OWNER_TEXT)
+        .append(findLargestIndex(output_dlturkiye));
     return stringBuilder.toString();
   }
   //ağırlık değeri en yüksek indis tahmin edilen sayıyı vermektedir.

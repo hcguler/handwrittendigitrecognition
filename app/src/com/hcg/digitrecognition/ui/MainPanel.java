@@ -1,13 +1,14 @@
 package com.hcg.digitrecognition.ui;
 
 import com.hcg.digitrecognition.DigitDetector;
-import com.hcg.digitrecognition.Main;
+import com.hcg.digitrecognition.constants.UiConstants;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.swing.*;
+import javax.swing.text.JTextComponent;
 import org.deeplearning4j.nn.modelimport.keras.exceptions.InvalidKerasConfigurationException;
 import org.deeplearning4j.nn.modelimport.keras.exceptions.UnsupportedKerasConfigurationException;
 
@@ -16,27 +17,28 @@ import org.deeplearning4j.nn.modelimport.keras.exceptions.UnsupportedKerasConfig
  */
 public class MainPanel extends JPanel {
 
-  private static final int TEXTBOX_HEIGHT = 50;
 
   private final JPanel drawPanelContainer;
   private final DrawPanel drawPanel;
-  private final JTextArea resultText;
+  private JTextPane resultText;
   private JButton calculateButton;
   private JButton clearButton;
+  private JTextPane infoText;
   private final DigitDetector digitDetector;
 
   public MainPanel() throws UnsupportedKerasConfigurationException,
       IOException,
       InvalidKerasConfigurationException {
-    // Init fields
     digitDetector = new DigitDetector();
     drawPanel = new DrawPanel();
     drawPanelContainer = new JPanel();
-    resultText = new JTextArea();
+
     initializeClearButton();
     initializeCalculateButton();
+    initializeInfoText();
+    initializeResultText();
+
     drawPanelContainer.setBackground(Color.LIGHT_GRAY);
-    // Layout panels
     final JPanel topContainer = new JPanel();
     topContainer.setLayout(new BoxLayout(topContainer, BoxLayout.X_AXIS));
     this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -45,6 +47,7 @@ public class MainPanel extends JPanel {
     buttonContainer.setLayout(new GridBagLayout());
     buttonContainer.add(calculateButton);
     buttonContainer.add(clearButton);
+    drawPanelContainer.add(infoText);
     drawPanelContainer.add(drawPanel);
     drawPanelContainer.add(buttonContainer);
     drawPanelContainer.add(resultText);
@@ -52,9 +55,24 @@ public class MainPanel extends JPanel {
     this.add(topContainer);
   }
 
+  private void initializeResultText() {
+    resultText = new JTextPane();
+    resultText.setContentType("text/html");
+  }
+
+
+  private void initializeInfoText() {
+    infoText = new JTextPane();
+    infoText.setContentType("text/html");
+    infoText.setSize(new Dimension(UiConstants.DRAWABLE_PANEL_WIDTH, UiConstants.TEXTBOX_HEIGHT));
+    infoText.setText("<html><center><font size=4 color=rgb(1,1,1)>  "
+        + UiConstants.INFO_TEXT
+        + "   </font></center></html>");
+  }
+
   private void initializeCalculateButton() {
     calculateButton = new JButton();
-    calculateButton.setText("Calculate");
+    calculateButton.setText(UiConstants.CALCULATE_BUTTON_TEXT);
     calculateButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
@@ -79,29 +97,31 @@ public class MainPanel extends JPanel {
             ImageUtils.MNIST_IMAGE_SIZE,
             ImageUtils.MNIST_IMAGE_SIZE);
         //kullanılabilir durumda olan h5f yapay sinir ağlarından sonuçlar oluşturulur.
-        resultText.setText(digitDetector.recognize(mnistInputImage));
+        resultText.setText("<html><center><b><font size=5 color=rgb(255,0,0)>  "
+            + digitDetector.recognize(mnistInputImage)
+            + "   </font></b></center></html>");
       }
     });
   }
 
   private void initializeClearButton() {
     clearButton = new JButton();
-    clearButton.setText("Clear");
+    clearButton.setText(UiConstants.CLEAR_BUTTON_TEXT);
     clearButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
         drawPanel.clear();
+        resultText.setText("");
       }
     });
   }
 
   private void setComponentSizes() {
-    final int half = Main.UI_SIZE / 2;
-    drawPanelContainer.setPreferredSize(new Dimension(half, Main.UI_SIZE));
-    drawPanel.setPreferredSize(new Dimension(half, half));
-    resultText.setPreferredSize(new Dimension(half, TEXTBOX_HEIGHT));
-    clearButton.setPreferredSize(new Dimension(half/2, TEXTBOX_HEIGHT));
-    calculateButton.setPreferredSize(new Dimension(half/2, TEXTBOX_HEIGHT));
+    drawPanelContainer.setPreferredSize(new Dimension(UiConstants.DRAWABLE_PANEL_WIDTH, UiConstants.DRAWABLE_PANEL_HEIGHT));
+    drawPanel.setPreferredSize(new Dimension(UiConstants.DRAWABLE_PANEL_WIDTH, UiConstants.DRAWABLE_PANEL_HEIGHT));
+    resultText.setPreferredSize(new Dimension(UiConstants.TEXTBOX_WIDTH, UiConstants.TEXTBOX_HEIGHT));
+    clearButton.setPreferredSize(new Dimension(UiConstants.BUTTON_WIDTH, UiConstants.BUTTON_HEIGHT));
+    calculateButton.setPreferredSize(new Dimension(UiConstants.BUTTON_WIDTH, UiConstants.BUTTON_HEIGHT));
   }
 
 
