@@ -1,21 +1,3 @@
-# -*- coding: utf-8 -*- 
-'''
-Deep Learning Türkiye topluluğu tarafından hazırlanmıştır.
-Amaç: El yazısı rakamların tanınması.
-Veriseti: MNIST (http://yann.lecun.com/exdb/mnist/)
-Algoritma: Evrişimli Sinir Ağları (Convolutional Neural Networks)
-Microsoft Azure Notebook: https://notebooks.azure.com/deeplearningturkiye/libraries/pratik-derin-ogrenme/html/rakam_tanima_CNN_MNIST.ipynb
-Ağ Mimarisi:
-- 32 x 3 x 3 CONV
-- 64 x 3 x 4 CONV
-- 2 x 2 MAX POOL
-- DROPOUT (%25)
-- 128 FC
-- DROPOUT (%50)
-- 10 FC
-12 epoch sonunda 99.25% test doğruluk oranı elde ediliyor.
-'''
-
 from __future__ import print_function
 import keras
 from keras.datasets import mnist
@@ -95,7 +77,7 @@ model.fit(x_train, y_train,
           epochs=epochs,
           verbose=1,
           validation_data=(x_test, y_test))
-# Save the model to the current directory
+# Modeli kayıt ediyoruz.
 model.save("mnist_dlturkiye.h5f")
 # test işlemini gerçekleştirelim ve sonuçları ekrana yazdıralım
 score = model.evaluate(x_test, y_test, verbose=0)

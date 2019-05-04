@@ -18,16 +18,16 @@ public class DigitDetector {
 
   private final MultiLayerNetwork mnistModel;
   private final MultiLayerNetwork mnistModel_dlturkiye;
-//  private final MultiLayerNetwork hcg;
+  private final MultiLayerNetwork hcg;
 
   //kullanılabilir yapay sinir ağları file olarak alınıp MultiLayerNetwork olarak tanımlanır.
   public DigitDetector() throws IOException,
       InvalidKerasConfigurationException,
       UnsupportedKerasConfigurationException {
 
-    final File file = new File("../handwrittendigitrecognition/trainer/mnist.h5f");
-    final File file_dlturkiye = new File("../handwrittendigitrecognition/trainer/mnist_dlturkiye.h5f");
-//    final File file_hcg = new File("../handwrittendigitrecognition/trainer/hcg.h5f");
+    final File file = new File("../handwrittendigitrecognition/trainer/mnist_dlturkiye.h5f");
+    final File file_dlturkiye = new File("../handwrittendigitrecognition/trainer/mnist.h5f");
+    final File file_hcg = new File("../handwrittendigitrecognition/trainer/hcg.h5f");
 
     if (!file.exists()) {
       throw new IOException("The Keras model file does not exits. Run the mnist-trainer.py"
@@ -37,14 +37,14 @@ public class DigitDetector {
       throw new IOException("The Keras model file does not exits. Run the mnist-trainer.py"
           + " python script first");
     }
-   /* if (!file_hcg.exists()) {
+    if (!file_hcg.exists()) {
       throw new IOException("The Keras model file does not exits. Run the mnist-trainer.py"
           + " python script first");
-    }*/
+    }
 
     mnistModel = KerasModelImport.importKerasSequentialModelAndWeights(file.getAbsolutePath());
     mnistModel_dlturkiye = KerasModelImport.importKerasSequentialModelAndWeights(file_dlturkiye.getAbsolutePath());
-//    hcg = KerasModelImport.importKerasSequentialModelAndWeights(file_hcg.getAbsolutePath());
+    hcg = KerasModelImport.importKerasSequentialModelAndWeights(file_hcg.getAbsolutePath());
   }
 
   //yeni veri girişi image matris olarak girdi verilip çıktı olarak 10 elemanlı bir dizi çıkışı alınır.
@@ -59,13 +59,16 @@ public class DigitDetector {
     final NDArray drawnDigit = new NDArray(pixels, inputDataShape, 'a');
     final INDArray output = mnistModel.output(drawnDigit);
     final INDArray output_dlturkiye = mnistModel_dlturkiye.output(drawnDigit);
-//    final INDArray output_hcg = hcg.output(drawnDigit);
+    final INDArray output_hcg = hcg.output(drawnDigit);
 
     StringBuilder stringBuilder = new StringBuilder(UiConstants.YG_CNN_OWNER_TEXT)
         .append(findLargestIndex(output))
         .append(UiConstants.HTML_BR)
         .append(UiConstants.DLTURKIYE_CNN_OWNER_TEXT)
-        .append(findLargestIndex(output_dlturkiye));
+        .append(findLargestIndex(output_dlturkiye))
+        .append(UiConstants.HTML_BR)
+        .append(UiConstants.HCG_CNN_OWNER_TEXT)
+        .append(findLargestIndex(output_hcg));
     return stringBuilder.toString();
   }
   //ağırlık değeri en yüksek indis tahmin edilen sayıyı vermektedir.

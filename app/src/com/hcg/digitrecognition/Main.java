@@ -34,7 +34,6 @@ public class Main {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     final MainPanel mainUi = new MainPanel();
     frame.add(mainUi);
-
     return frame;
   }
 }

@@ -37,12 +37,15 @@ public class MainPanel extends JPanel {
     initializeCalculateButton();
     initializeInfoText();
     initializeResultText();
+    setComponentSizes();
+    initializeDesignLayout();
+  }
 
+  private void initializeDesignLayout() {
     drawPanelContainer.setBackground(Color.LIGHT_GRAY);
     final JPanel topContainer = new JPanel();
     topContainer.setLayout(new BoxLayout(topContainer, BoxLayout.X_AXIS));
     this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-    setComponentSizes();
     final JPanel buttonContainer = new JPanel();
     buttonContainer.setLayout(new GridBagLayout());
     buttonContainer.add(calculateButton);

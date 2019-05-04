@@ -1,4 +1,3 @@
-
 from __future__ import print_function
 import keras
 from keras.datasets import mnist
@@ -9,7 +8,7 @@ from keras import backend as K
 
 batch_size = 128 # her bir iterasyonda "128" resim alınsın
 num_classes = 10 # ayırt etmek istediğimiz "10" rakam
-epochs = 12 # eğitim 12 epoch sürsün
+epochs = 10 # eğitim 10 epoch sürsün
 
 # giriş resimlerinin boyutları 28 x 28 piksel
 img_rows, img_cols = 28, 28
@@ -70,7 +69,7 @@ model.fit(x_train, y_train,
           epochs=epochs,
           verbose=1,
           validation_data=(x_test, y_test))
-# Save the model to the current directory
+# Modeli kayıt ediyoruz.
 model.save("mnist.h5f")
 # test işlemini gerçekleştirelim ve sonuçları ekrana yazdıralım
 score = model.evaluate(x_test, y_test, verbose=0)
