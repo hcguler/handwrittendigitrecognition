@@ -33,7 +33,10 @@
 	128 FC (aktivasyon olarak relu fonksiyonu eklenmiş.)
 	DROPOUT (%50)
 	10 FC
-	
+
+![alt text](https://github.com/hcguler/handwrittendigitrecognition/blob/master/app/src/com/hcg/digitrecognition/images/dl_turkiye.png)
+ 
+
 **Yassine Ghouzam’a ait çalışma kaynak: kaggle**
 
     32 x 5 x 5 CONV (aktivasyon olarak relu fonksiyonu eklenmiş)
@@ -47,7 +50,9 @@
     256 FC (aktivasyon olarak relu fonksiyonu eklenmiş.)
     DROPOUT (%50)
     10 FC`
-  
+     
+ ![alt text](https://github.com/hcguler/handwrittendigitrecognition/blob/master/app/src/com/hcg/digitrecognition/images/Yassine_Ghouzam.png)
+
  **Heuristic olarak deneme yanıl ile oluşturulmuş kendi mimari modelim**
  
     128 x 5 x 5 CONV (aktivasyon olarak relu fonksiyonu eklenmiş)
@@ -61,4 +66,21 @@
     DROPOUT (%50)
     10 FC
 
+ ![alt text](https://github.com/hcguler/handwrittendigitrecognition/blob/master/app/src/com/hcg/digitrecognition/images/hcg.png)
+  
+ 
+#### **Yeni Veri Oluşturma**
 
+    1- Kullanıcı çizim panelinde veri girişi yapar.
+    
+    2- Panel resim olarak alınır.
+    
+    3- Çizim yapılan veri 0 border ile kesilip alınır.
+    
+    4- 20x20 piksel boyutuna çevrilir.
+    
+    5- Zemin siyah yazı beyaz çevrilir.
+    
+    6- 28x28 piksel olacak şekilde border eklenir.
+    
+    7- Eğitilmiş yapay sinir ağına sunulup çıktı oluşturulur.
