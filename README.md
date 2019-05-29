@@ -84,3 +84,16 @@
     6- 28x28 piksel olacak şekilde border eklenir.
     
     7- Eğitilmiş yapay sinir ağına sunulup çıktı oluşturulur.
+    
+### **Uygulama Arayüzü ve Örnek Çıktıları**
+    
+![alt text](https://github.com/hcguler/handwrittendigitrecognition/blob/master/app/src/com/hcg/digitrecognition/images/app-1.png)
+  
+![alt text](https://github.com/hcguler/handwrittendigitrecognition/blob/master/app/src/com/hcg/digitrecognition/images/app-2.png)
+    
+![alt text](https://github.com/hcguler/handwrittendigitrecognition/blob/master/app/src/com/hcg/digitrecognition/images/app-3.png)
+   
+![alt text](https://github.com/hcguler/handwrittendigitrecognition/blob/master/app/src/com/hcg/digitrecognition/images/app-4.png)
+    
+     
+ 
